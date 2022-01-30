@@ -8,9 +8,10 @@ session_start();
 $usuarioDao = new UsuarioDao();
 $login = $usuarioDao->login($_POST['email'], $_POST['password']);
 
+
 if(!empty($login)){
     $_SESSION['usuario'] = $login;
-    header('location: index.php');
+    header('location: /home.php');
 }else{
     echo 'olá mundo!';
 }
