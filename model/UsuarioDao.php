@@ -1,6 +1,9 @@
 <?php
-    require_once "../db/Conexao.php";
-    require_once "../classes/Usuario.php";
+    
+    require_once  "./db/Conexao.php";
+    require_once  "./classes/Usuario.php";
+    
+
     class UsuarioDao extends Conexao{
         
         public function mostrarTodos(){
@@ -43,7 +46,20 @@
             }
 
         }
-
+        public function inserirUsuarios($usuario){
+            $pdo = new Conexao();
+           
+    
+            $stm = $pdo->prepare("INSERT INTO usuario (nome, email, password, type, status) VALUES (:nome, :email, :password, :type, :status)");
+            $stm->bindValue(":nome", $usuario->nome);
+            $stm->bindValue(":email", $usuario->email);
+            $stm->bindValue(":password", $usuario->password);
+            $stm->bindValue(":type", $usuario->type);
+            $stm->bindValue(":status", $usuario->status);
+    
+            $stm->execute();
+        }
+        
       
     }
     ?>

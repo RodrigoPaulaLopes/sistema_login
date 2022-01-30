@@ -1,6 +1,6 @@
 <?php
 
-require_once "../model/UsuarioDao.php";
+require "../model/UsuarioDao.php";
 
 
 session_start();
@@ -13,10 +13,10 @@ if(!empty($login)){
     $_SESSION['usuario'] = $login;
     header('location: /home.php');
 }else{
-    echo 'olá mundo!';
+    
+    header('location: /');
 }
 
-he
 
 
 

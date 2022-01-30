@@ -2,16 +2,23 @@
 
 
 
-// $usuarioDao = new UsuarioDao();
-
-// $rs = $usuarioDao->mostrarTodos();
+session_start();
 ?>
 
 <?php include "./components/header.php"?>
 <div class="container">
     
     <h1>Login</h1>
-    <form action="./classes/login.php" method="post">
+    <div class="alert alert-danger"><?php
+    if(isset($_SESSION['msg'])){
+        echo $_SESSION['msg'];
+        
+       
+    }else{
+        session_destroy();
+    }
+     ?></div>
+    <form action="/classes/login.php" method="post">
         <div class="mb-3 col-12">
             <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
             <input type="text" class="form-control" name="email" placeholder="exemplo@email.com">
@@ -25,9 +32,7 @@
                 <i class="bi bi-box-arrow-in-right"></i> Entrar
             </button>
         </div>
-        <div class="mb-3">
-            <a href="#">Cadastrar novo usuario.</a>
-        </div>
+        
     </form>
 
 </div>

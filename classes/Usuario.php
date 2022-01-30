@@ -1,5 +1,8 @@
 <?php
-    class Produto{
+
+   
+
+    class Usuario{
         public $id;
         public $name;
         public $email;
