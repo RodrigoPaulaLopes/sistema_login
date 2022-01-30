@@ -73,6 +73,20 @@
             $stm->bindValue(":id", $id);
             $stm->execute();
         }
-      
+        public function editarUsuarios(Usuario $usuario){
+            
+    
+            $stm = $this->conn->prepare("UPDATE usuario SET name = :name, email = :email, password = :password, type = :type, status = :status WHERE id = :id");
+            $stm->bindValue(':name', $usuario->name);
+            $stm->bindValue(':email', $usuario->email);
+            $stm->bindValue(':password', $usuario->password);
+            $stm->bindValue(':type', $usuario->type);
+            $stm->bindValue(':status', $usuario->status);
+            $stm->bindValue(':id', $usuario->id);
+    
+            $stm->execute();
+    
+        
+        }
     }
     ?>

@@ -22,14 +22,27 @@
         $usuario->type = $_POST['type'];
         $usuario->status = $_POST['status'];
         
-        var_dump($usuario);
+        
 
         $usuarioDao->inserirUsuarios($usuario);
         
 
     }else{
         if(!empty($_POST['id'])){
-            
+            $usuarioDao = new UsuarioDao();
+            $usuario = new Usuario();
+
+            $usuario->name = $_POST['name'];
+            $usuario->email = $_POST['email'];
+            $usuario->password = $_POST['password'];
+            $usuario->type = $_POST['type'];
+            $usuario->status = $_POST['status'];
+            $usuario->id = $_POST['id'];
+        
+        
+
+            $usuarioDao->editarUsuarios($usuario);
+            header('location: home.php');
         }
     }
     
