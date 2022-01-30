@@ -3,6 +3,13 @@
 
     require_once "./model/UsuarioDao.php";
     
+    if(isset($_GET['Editar'])){
+        $usuarioDao = new UsuarioDao();
+
+        $id = $_GET['Editar'];
+        $usuarioEditar = $usuarioDao->mostrarUsuario($id);
+        
+    }
     
     if(empty($_POST['id']) && isset($_POST['name'])){
         
@@ -21,11 +28,7 @@
         
 
     }else{
-        if(isset($_GET['Editar'])){
-            $usuarioDao = new UsuarioDao();
-
-            $id = $_GET['Editar'];
-            $usuarioEditar = $usuarioDao->mostrarUsuario($id);
+        if(!empty($_POST['id'])){
             
         }
     }
@@ -64,21 +67,57 @@
     <div class="form-group mb-2">
         <label for="exampleFormControlSelect1">Tipo</label>
         <select class="form-control" name="type" id="exampleFormControlSelect1">
-            <option></option>  
-            <option value="admin">Administrador</option>
+           <option value="<?php
+           if(isset($_GET['Editar'])){
+                echo $usuarioEditar['type'];
+            }else{ 
+                echo "";
+            }?>">
+            <?php
+            if(isset($usuarioEditar)){
+                if($usuarioEditar['type'] == "user"){
+                    echo "Usuario";
+                }else{
+                    echo "";
+                }
+                if($usuarioEditar['type'] == "admin"){ 
+                    echo "Administrador";
+                }else{
+                    echo "";
+                }
+            }?></option>
             <option value="user">Usuario</option>
+            <option value="admin">Administrador</option>
         </select>
     </div>
     <div class="form-group mb-2">
         <label for="exampleFormControlSelect1">Status</label>
         <select class="form-control" name="status" id="exampleFormControlSelect1">
-            <option></option>  
+        <option value="<?php
+            if(isset($_GET['Editar']) && isset($usuarioEditar)){
+              echo $usuarioEditar['status']; 
+            }else{
+                echo "";
+            }
+        ?>">
+         <?php
+         if(isset($usuarioEditar)){
+          if($usuarioEditar['status'] == "A"){
+               echo "Ativo";
+            }else if(!isset($usuarioEditar)){
+                echo "";
+            }
+            if($usuarioEditar['status'] == "C" || $usuarioEditar['status'] == "c"){
+                echo "Cancelado";
+            }
+        }?>
+            </option> 
             <option value="A"> Ativo</option>
             <option value="C"> Cancelado</option>
         </select>
     </div>
     <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="submit" class="btn btn-outline-secondary">Cadastrar</button>
+        <button type="submit" class="btn btn-outline-secondary"><?= isset($_GET['Editar']) ? "Atualizar" : "Cadastrar"?></button>
  
     </div>
 
