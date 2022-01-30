@@ -1,6 +1,6 @@
 <?php
 
-require "../model/UsuarioDao.php";
+require_once "../model/UsuarioDao.php";
 
 
 session_start();

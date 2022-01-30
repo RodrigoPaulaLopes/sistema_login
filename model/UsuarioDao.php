@@ -46,12 +46,10 @@
             }
 
         }
-        public function inserirUsuarios($usuario){
-            $pdo = new Conexao();
-           
-    
-            $stm = $pdo->prepare("INSERT INTO usuario (nome, email, password, type, status) VALUES (:nome, :email, :password, :type, :status)");
-            $stm->bindValue(":nome", $usuario->nome);
+        public function inserirUsuarios(Usuario $usuario){
+
+            $stm = $this->conn->prepare("INSERT INTO usuario (name, email, password, type, status) VALUES (:nome, :email, :password, :type, :status)");
+            $stm->bindValue(":nome", $usuario->name);
             $stm->bindValue(":email", $usuario->email);
             $stm->bindValue(":password", $usuario->password);
             $stm->bindValue(":type", $usuario->type);
@@ -60,6 +58,21 @@
             $stm->execute();
         }
         
+        public function mostrarUsuario($id){
+          
+    
+            $stm = $this->conn->query("SELECT * FROM usuario WHERE id = $id");
+    
+            return $stm->fetch();
+    
+        }
+        public function excluirUsuarios($id){
+            
+    
+            $stm = $this->conn->prepare("DELETE FROM usuario WHERE id = :id");
+            $stm->bindValue(":id", $id);
+            $stm->execute();
+        }
       
     }
     ?>

@@ -2,12 +2,19 @@
 <?php include "./components/header.php"?>
 <?php
    
-    require "./model/UsuarioDao.php";
+    require_once "./model/UsuarioDao.php";
     $usuarioDao = new UsuarioDao();
     $usuario = [];
     $usuarios = $usuarioDao->mostrarTodos();
     foreach ($usuarios as $u) {
         array_push($usuario, $u);
+    }
+
+    if(isset($_GET['excluir'])){
+        $id = $_GET['excluir'];
+        $usuarioDao->excluirUsuarios($id);
+
+        header('location: home.php');
     }
   
     
