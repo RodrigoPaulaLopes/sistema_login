@@ -1,9 +1,10 @@
 <?php
-
-require_once "../model/UsuarioDao.php";
-
-
 session_start();
+
+include "../model/UsuarioDao.php";
+
+
+
 
 $usuarioDao = new UsuarioDao();
 $login = $usuarioDao->login($_POST['email'], $_POST['password']);
@@ -11,10 +12,10 @@ $login = $usuarioDao->login($_POST['email'], $_POST['password']);
 
 if(!empty($login)){
     $_SESSION['usuario'] = $login;
-    header('location: /home.php');
+    header('location: ../view/home.php');
 }else{
-    
-    header('location: /');
+    $msg = "Nenhum usuario foi encontrado";
+    header('location: ../index.php?msg='.$msg);
 }
 
 

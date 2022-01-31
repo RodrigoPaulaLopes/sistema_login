@@ -1,7 +1,7 @@
 <?php
     
-    require_once  "./db/Conexao.php";
-    require_once  "./classes/Usuario.php";
+    include  "../db/Conexao.php";
+    include  "../classes/Usuario.php";
     
 
     class UsuarioDao extends Conexao{

@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    require_once "./model/UsuarioDao.php";
+    require_once "../model/UsuarioDao.php";
     
     if(isset($_GET['Editar'])){
         $usuarioDao = new UsuarioDao();
@@ -47,7 +47,7 @@
     }
     
 ?>
-<?php include "./components/header.php"?>
+<?php include "../components/header.php"?>
 <div class="container">
 <div class="border-bottom mb-5 mt-2">
     <ul class="nav d-flex justify-content-between">
@@ -56,7 +56,7 @@
     </li>
     
     <li>
-        <a  href="./classes/deslogar.php" class="btn btn-danger">
+        <a  href="../classes/deslogar.php" class="btn btn-danger">
             <i class="bi bi-box-arrow-in-left"></i> Sair
         </a>
     </li>

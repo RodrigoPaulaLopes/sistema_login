@@ -1,8 +1,8 @@
 <?php session_start()?>
-<?php include "./components/header.php"?>
+<?php include "../components/header.php"?>
 <?php
    
-    require_once "./model/UsuarioDao.php";
+    require "../model/UsuarioDao.php";
     $usuarioDao = new UsuarioDao();
     $usuario = [];
     $usuarios = $usuarioDao->mostrarTodos();
@@ -10,11 +10,13 @@
         array_push($usuario, $u);
     }
 
-    if(isset($_GET['excluir'])){
-        $id = $_GET['excluir'];
+    if(isset($_GET['Excluir'])){
+        $id = $_GET['Excluir'];
         $usuarioDao->excluirUsuarios($id);
 
-        header('location: home.php');
+
+        header('Location: home.php');
+        
     }
   
     
@@ -23,11 +25,11 @@
 <div class=" border-bottom mb-3 mt-2 ">
     <ul class="nav d-flex justify-content-between">
     <li class="nav-item">
-        <a class="nav-link active" href="./formulario.php">Cadastrar Novos Usuarios</a>
+        <a class="nav-link active" href="formulario.php">Cadastrar Novos Usuarios</a>
     </li>
     
     <li>
-        <a href="./classes/deslogar.php" class="btn btn-danger">
+        <a href="../classes/deslogar.php" class="btn btn-danger">
         <i class="bi bi-box-arrow-in-left"></i> Sair
         </a>
     </li>
@@ -53,8 +55,9 @@
                 <td><?=$users['type']?></td>
                 <td><?=$users['status']?></td>
                 <td>
-                    <a href="/formulario.php?Editar=<?=$users['id']?>" class="btn btn-outline-success">Editar</a>
-                    <a href="/home.php?excluir=<?=$users['id']?>" class="btn btn-outline-danger">Excluir</a>
+                    <a href="./formulario.php?Editar=<?=$users['id']?>" class="btn btn-outline-success">Editar</a>
+                    <a href="home.php?Excluir=<?=$users['id']?>" class="btn btn-outline-danger">Excluir</a>
+                    
                 </td>
             </tr>
             <?php endforeach;?>
@@ -63,4 +66,4 @@
     </table>
 
 </div>
-<?php include "./components/footer.php"?>
+<?php include "../components/footer.php"?>
