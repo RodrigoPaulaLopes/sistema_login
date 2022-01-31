@@ -1,5 +1,6 @@
 <?php
     session_start();
+    
 
     require_once "../model/UsuarioDao.php";
     
@@ -40,6 +41,7 @@
             $usuario->id = $_POST['id'];
         
         
+            $_SESSION['usuario'][1] = $usuario->name;
 
             $usuarioDao->editarUsuarios($usuario);
             header('location: home.php');
@@ -47,7 +49,10 @@
     }
     
 ?>
-<?php include "../components/header.php"?>
+<?php 
+include "../components/header.php";
+$title = "Formulario";
+?>
 <div class="container">
 <div class="border-bottom mb-5 mt-2">
     <ul class="nav d-flex justify-content-between">

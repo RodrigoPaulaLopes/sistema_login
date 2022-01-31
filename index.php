@@ -3,7 +3,7 @@
 
 
 session_start();
-
+$title = "Login";
 ?>
 
 <?php include "./components/header.php"?>

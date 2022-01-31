@@ -1,7 +1,7 @@
 <?php session_start()?>
 <?php include "../components/header.php"?>
 <?php
-   
+    $title = "Home";
     require "../model/UsuarioDao.php";
     $usuarioDao = new UsuarioDao();
     $usuario = [];
